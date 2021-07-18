@@ -149,15 +149,16 @@ function openVolumeBar() {
 }
 
 function volumeBarEvents(e) {
-    const fullVol = 155;
-    console.log(e)
-    let myVolume =  Math.round(150 - e.layerY);
-    mainVolume = myVolume/150;
+    let myVolume =  Math.round(155 - e.layerY);
+    mainVolume = myVolume/155;
     console.log(e.layerY)
     volumeBar.style.setProperty('--number', myVolume);
     volumeBar.style.setProperty('--number2', 100 - myVolume);
-    music.volume = mainVolume;
-   
+    if( mainVolume > 1) {
+       mainVolume=mainVolume/1.5
+    }else {
+        music.volume = mainVolume;
+    }
     openVolumeBar();
 
 }
@@ -172,6 +173,9 @@ function volumMmute() {
         music.volume = mainVolume;
     }
 }
+
+//volume slider 
+
 // Event Listeners
 
 prevBtn.addEventListener('click', prevSong);
