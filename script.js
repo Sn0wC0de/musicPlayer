@@ -154,11 +154,8 @@ function volumeBarEvents(e) {
     console.log(e.layerY)
     volumeBar.style.setProperty('--number', myVolume);
     volumeBar.style.setProperty('--number2', 100 - myVolume);
-    if( mainVolume > 1) {
-       mainVolume=mainVolume/1.5
-    }else {
-        music.volume = mainVolume;
-    }
+    music.volume = mainVolume;
+   
     openVolumeBar();
 
 }
