@@ -149,14 +149,13 @@ function openVolumeBar() {
 }
 
 function volumeBarEvents(e) {
-    const fullVol = 133;
-    let myVolume =  Math.round((609-e.screenY)*100/133);
-    mainVolume = myVolume/100;
-
+    const fullVol = 155;
+    let myVolume =  Math.round(150 - e.layerY);
+    mainVolume = myVolume/150;
     volumeBar.style.setProperty('--number', myVolume);
     volumeBar.style.setProperty('--number2', 100 - myVolume);
-    music.volume = myVolume/100;
-
+    music.volume = mainVolume;
+   
     openVolumeBar();
 
 }
