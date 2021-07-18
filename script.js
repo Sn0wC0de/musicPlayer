@@ -151,8 +151,10 @@ function openVolumeBar() {
 function volumeBarEvents(e) {
     let myVolume =  Math.round(155 - e.layerY);
     mainVolume = myVolume/155;
-    console.log(e.layerY)
+    myVolume = Math.floor(myVolume/155*100);
+    
     volumeBar.style.setProperty('--number', myVolume);
+    console.log(myVolume)
     volumeBar.style.setProperty('--number2', 100 - myVolume);
     music.volume = mainVolume;
    
