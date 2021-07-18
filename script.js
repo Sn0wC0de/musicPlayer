@@ -38,6 +38,7 @@ const songs = [
 
 // Chech if palying
 let isPlaying = false;
+let mainVolume= 0.5;
 
 // Play
 
@@ -150,6 +151,8 @@ function openVolumeBar() {
 function volumeBarEvents(e) {
     const fullVol = 133;
     let myVolume =  Math.round((609-e.screenY)*100/133);
+    mainVolume = myVolume/100;
+
     volumeBar.style.setProperty('--number', myVolume);
     volumeBar.style.setProperty('--number2', 100 - myVolume);
     music.volume = myVolume/100;
@@ -157,11 +160,24 @@ function volumeBarEvents(e) {
     openVolumeBar();
 
 }
+
+function volumMmute() {
+    console.log(volumeBtn.classList)
+    if( volumeBtn.classList[1] === "fa-volume-up"){
+    volumeBtn.classList.replace("fa-volume-up", "fa-volume-mute")
+    music.volume = 0
+    } else {
+        volumeBtn.classList.replace("fa-volume-mute", "fa-volume-up")
+        music.volume = mainVolume;
+    }
+}
 // Event Listeners
 
 prevBtn.addEventListener('click', prevSong);
 nextBtn.addEventListener('click', nextSong);
 volumeBtn.addEventListener('mouseover', openVolumeBar);
+volumeBtn.addEventListener('click', volumMmute);
+
 volumeBar.addEventListener('click', volumeBarEvents);
 music.addEventListener('ended', nextSong);
 music.addEventListener('timeupdate', updateProgressBar);

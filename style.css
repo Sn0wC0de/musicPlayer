@@ -3,9 +3,7 @@
 html {
   box-sizing: border-box;
 }
-/* :root{
-  
-} */
+
 body {
   margin: 0;
   min-height: 100vh;
