@@ -9,6 +9,8 @@ const durationEl = document.getElementById('duration');
 const prevBtn = document.getElementById('prev');
 const playBtn = document.getElementById('play');
 const nextBtn = document.getElementById('next');
+const volumeBtn = document.getElementById('volume-btn');
+const volumeBar = document.getElementById('volume-bar')
 
 // Music
 const songs = [
@@ -126,7 +128,7 @@ function updateProgressBar(e) {
             currentSeconds = `0${currentSeconds}`;
         };
         currentTimeEl.textContent = `${currentMinutes}:${currentSeconds}`;
-
+        // music.volume = 0.1;
         
     }
 }
@@ -137,11 +139,30 @@ function setProgressBar(e) {
     const clickX = e.offsetX;
     const {duration} = music;
     music.currentTime = (clickX/width) * duration;
+   
 }   
+
+function openVolumeBar() {
+    volumeBar.hidden = !volumeBar.hidden;
+    
+}
+
+function volumeBarEvents(e) {
+    const fullVol = 133;
+    let myVolume =  Math.round((609-e.screenY)*100/133);
+    volumeBar.style.setProperty('--number', myVolume);
+    volumeBar.style.setProperty('--number2', 100 - myVolume);
+    music.volume = myVolume/100;
+
+    openVolumeBar();
+
+}
 // Event Listeners
 
 prevBtn.addEventListener('click', prevSong);
 nextBtn.addEventListener('click', nextSong);
+volumeBtn.addEventListener('mouseover', openVolumeBar);
+volumeBar.addEventListener('click', volumeBarEvents);
 music.addEventListener('ended', nextSong);
 music.addEventListener('timeupdate', updateProgressBar);
 progressContainer.addEventListener('click', setProgressBar);

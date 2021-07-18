@@ -3,7 +3,9 @@
 html {
   box-sizing: border-box;
 }
-
+/* :root{
+  
+} */
 body {
   margin: 0;
   min-height: 100vh;
@@ -81,10 +83,12 @@ h3 {
 /* Controls */
 .player-controls {
   position: relative;
+  display:inline;
   top: -15px;
-  left: 120px;
+  left: 80px;
   width: 200px;
 }
+
 
 .fas {
   font-size: 30px;
@@ -105,6 +109,25 @@ h3 {
   position: relative;
   top: 3px;
 }
+
+
+.volume-bar{
+  --number: 50;
+  --number2: 50;
+  --collor1: rgb(191,190,190) calc(var(--number)*1%);
+  --collor2: rgb(241, 234, 234)calc(var(--number2)*1%);
+  
+  
+  position: absolute;
+  width:37px;
+  height:150px;
+  background: linear-gradient(to top, var(--collor1) , var(--collor2) );
+  top: -165px;
+  left: -5px
+}
+
+
+
 
 /* Media Query: iPhone (Vertical) */
 @media screen and (max-width: 376px) {
@@ -127,6 +150,6 @@ h3 {
 
   .player-controls {
     top: -10px;
-    left: 100px;
+    left: 30px;
   }
 }
